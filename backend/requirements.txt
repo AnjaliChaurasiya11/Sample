@@ -1,0 +1,32 @@
+# ===========================
+# AI Help Desk - Backend Dependencies
+# ===========================
+
+# --- Core Framework ---
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# --- Database ---
+sqlmodel==0.0.38   
+sqlalchemy==2.0.51    
+psycopg2==2.9.12   
+pgvector==0.4.2 
+
+# --- Validation & Settings ---
+pydantic>=2.11.0
+pydantic-settings==2.5.2
+python-dotenv==1.0.1
+
+# --- Team B will add below this line ---
+# Note for Team B: Since the deployment machine uses Windows 10, Python 3.11, and CUDA 12.8,
+# please install PyTorch with CUDA support using the following extra index URL:
+#
+# pip install torch --index-url https://download.pytorch.org/whl/cu124
+#
+# (PyTorch's cu124 wheels are fully compatible with CUDA 12.8)
+#
+# Once installed, standard HuggingFace/SentenceTransformers packages can be added:
+transformers
+sentence-transformers
+sentencepiece
+

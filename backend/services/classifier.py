@@ -1,0 +1,61 @@
+import os
+from typing import Optional
+# pyrefly: ignore [missing-import]
+from transformers import pipeline
+
+class TicketClassifier:
+    """
+    Handles zero-shot categorization for Fault Types (R-11) and Severity Ranks (R-12)
+    using natural language inference over English/Hindi/Hinglish text.
+    """
+    
+    FAULT_TYPES = [
+        "login/access", 
+        "performance/slow", 
+        "data error", 
+        "total outage", 
+        "partial/degraded", 
+        "cosmetic/UI", 
+        "other"
+    ]
+    
+    SEVERITY_RANKS = [
+        "critical", 
+        "high", 
+        "normal", 
+        "low"
+    ]
+
+    def __init__(self):
+        # Dynamically resolve path to the local model relative to this file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        model_dir = os.path.join(current_dir, "..", "local_models", "mDeBERTa-v3")
+        self.model_path = os.path.normpath(model_dir)
+        
+        # Initialize zero-shot pipeline strictly from local files (air-gapped)
+        self.classifier = pipeline(
+            task="zero-shot-classification", 
+            model=self.model_path, 
+            tokenizer=self.model_path,
+            local_files_only=True
+        )
+
+    def classify_fault_type(self, text: Optional[str]) -> str:
+        # Edge case bypass: empty inputs default to "other"
+        if text is None or not text.strip():
+            return "other"
+            
+        cleaned_text = text.strip()
+        result = self.classifier(cleaned_text, candidate_labels=self.FAULT_TYPES)
+        # The pipeline returns a dict with 'labels' sorted by highest score
+        return result["labels"][0]
+
+    def classify_severity(self, text: Optional[str]) -> str:
+        # Edge case bypass: empty inputs default to "normal"
+        if text is None or not text.strip():
+            return "normal"
+            
+        cleaned_text = text.strip()
+        result = self.classifier(cleaned_text, candidate_labels=self.SEVERITY_RANKS)
+        # The pipeline returns a dict with 'labels' sorted by highest score
+        return result["labels"][0]
