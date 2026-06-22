@@ -1,0 +1,188 @@
+{
+  "applications": [
+    {
+      "id": 1,
+      "name": "Single Sign-On (SSO)",
+      "description": "Central authentication portal for all company services.",
+      "owning_team": "Identity & Access Management (IAM)",
+      "contact": "iam-support@company.com"
+    },
+    {
+      "id": 2,
+      "name": "Leave & Attendance Portal",
+      "description": "Employee portal for marking daily attendance and applying for leaves.",
+      "owning_team": "HR Tech Services",
+      "contact": "hr-tech@company.com"
+    },
+    {
+      "id": 3,
+      "name": "Oracle ERP Data Cluster",
+      "description": "Main database backend handling finance and enterprise resource planning.",
+      "owning_team": "Database Admins (DBA)",
+      "contact": "dba-team@company.com"
+    },
+    {
+      "id": 4,
+      "name": "Company Webmail",
+      "description": "Enterprise email communication client.",
+      "owning_team": "Network & Comms",
+      "contact": "comms-support@company.com"
+    },
+    {
+      "id": 5,
+      "name": "IT Service Desk Portal",
+      "description": "Ticketing system for raising IT and admin requests.",
+      "owning_team": "IT Support",
+      "contact": "it-helpdesk@company.com"
+    },
+    {
+      "id": 6,
+      "name": "VPN Gateway",
+      "description": "Virtual Private Network gateway for remote access to company resources.",
+      "owning_team": "Network Security",
+      "contact": "net-sec@company.com"
+    },
+    {
+      "id": 7,
+      "name": "Corporate Intranet",
+      "description": "Internal company knowledge base and news portal.",
+      "owning_team": "Internal Comms",
+      "contact": "intranet-admin@company.com"
+    },
+    {
+      "id": 8,
+      "name": "Payroll System",
+      "description": "Employee portal for viewing salary slips and tax deductions.",
+      "owning_team": "Finance Tech",
+      "contact": "payroll-tech@company.com"
+    }
+  ],
+  "application_purposes": [
+    {
+      "application_id": 1,
+      "purpose_text": "Used to login to applications. Verifies passwords, handles multi-factor authentication (MFA), and user access tokens."
+    },
+    {
+      "application_id": 2,
+      "purpose_text": "Used by employees to mark morning attendance, view holiday calendars, and request sick or annual leave."
+    },
+    {
+      "application_id": 3,
+      "purpose_text": "Core database that stores employee salaries, vendor payments, and supply chain records."
+    },
+    {
+      "application_id": 4,
+      "purpose_text": "Used to send and receive emails internally and externally, manage calendars, and schedule meetings."
+    },
+    {
+      "application_id": 5,
+      "purpose_text": "Used to create IT support tickets, request new hardware, and report software issues."
+    },
+    {
+      "application_id": 6,
+      "purpose_text": "Allows remote employees to securely connect to the internal company network from outside the office."
+    },
+    {
+      "application_id": 7,
+      "purpose_text": "Central hub for company policies, announcements, directory, and shared documentation."
+    },
+    {
+      "application_id": 8,
+      "purpose_text": "Generates monthly payslips, handles tax declaration forms, and manages employee compensation details."
+    }
+  ],
+  "application_symptoms": [
+    {
+      "application_id": 1,
+      "symptom_text": "I forgot my password. My account is locked out. MFA code is not arriving on my phone. Invalid credentials error."
+    },
+    {
+      "application_id": 1,
+      "symptom_text": "Password reset link nahi aaya. Account block ho gaya hai. OTP nahi aa raha."
+    },
+    {
+      "application_id": 2,
+      "symptom_text": "Unable to mark attendance today. The leave portal page is blank. My leave balance is showing negative. Cannot submit leave request."
+    },
+    {
+      "application_id": 2,
+      "symptom_text": "Attendance mark nahi ho raha. Leave apply page stuck ho gaya. Chutti ka balance galat dikha raha hai."
+    },
+    {
+      "application_id": 3,
+      "symptom_text": "ERP queries are timing out. The finance module is very slow. Oracle database connection refused. Data sync failure."
+    },
+    {
+      "application_id": 4,
+      "symptom_text": "Not receiving any new emails. Outlook is disconnected from server. Cannot attach large files to email. Mailbox is full."
+    },
+    {
+      "application_id": 5,
+      "symptom_text": "Cannot submit a new ticket. The service desk portal is down. I am getting an error when requesting a new laptop."
+    },
+    {
+      "application_id": 6,
+      "symptom_text": "VPN keeps disconnecting. Cisco AnyConnect is failing to connect. Remote desktop is very laggy over VPN."
+    },
+    {
+      "application_id": 6,
+      "symptom_text": "Ghar se VPN connect nahi ho raha. Baar baar disconnect ho raha hai."
+    },
+    {
+      "application_id": 7,
+      "symptom_text": "Intranet page is not loading. Cannot find the HR policy document. Search function on the intranet is broken."
+    },
+    {
+      "application_id": 8,
+      "symptom_text": "Payslip is not generating. My tax declaration was not saved. Incorrect salary credited."
+    },
+    {
+      "application_id": 8,
+      "symptom_text": "Salary slip download nahi ho raha hai. Tax ka amount galat hai."
+    }
+  ],
+  "application_dependencies": [
+    {
+      "source_app_id": 2,
+      "dependent_app_id": 1,
+      "dependency_nature": "auth",
+      "description": "Leave portal requires SSO for user login."
+    },
+    {
+      "source_app_id": 2,
+      "dependent_app_id": 3,
+      "dependency_nature": "data",
+      "description": "Leave portal stores and retrieves employee records from the Oracle ERP database."
+    },
+    {
+      "source_app_id": 4,
+      "dependent_app_id": 1,
+      "dependency_nature": "auth",
+      "description": "Webmail uses SSO for authenticating users into their inboxes."
+    },
+    {
+      "source_app_id": 5,
+      "dependent_app_id": 1,
+      "dependency_nature": "auth",
+      "description": "IT Service Desk uses SSO for authentication."
+    },
+    {
+      "source_app_id": 8,
+      "dependent_app_id": 1,
+      "dependency_nature": "auth",
+      "description": "Payroll System requires SSO for secure access."
+    },
+    {
+      "source_app_id": 8,
+      "dependent_app_id": 3,
+      "dependency_nature": "data",
+      "description": "Payroll fetches employee salary structure from Oracle ERP."
+    },
+    {
+      "source_app_id": 7,
+      "dependent_app_id": 6,
+      "dependency_nature": "network",
+      "description": "Corporate Intranet requires VPN connection when accessed remotely."
+    }
+  ]
+}

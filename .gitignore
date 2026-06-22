@@ -1,0 +1,3 @@
+backend/local_models/
+backend/.venv/
+frontend/node_modules/
